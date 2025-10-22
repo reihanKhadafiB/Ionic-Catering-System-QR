@@ -1,0 +1,196 @@
+<style>
+    /* Font dan dasar tampilan */
+    ion-content {
+        font-family: var(--ion-font-family);
+        --ion-font-family: var(--ion-font-family);
+    }
+    
+    /* Kartu login yang lebih elegan */
+    .themed-login-card {
+        background-color: var(--ion-item-background);
+        border-radius: 16px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    /* Tombol utama yang lebih profesional */
+    .themed-button-login {
+        background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-primary-tint) 100%);
+        color: var(--ion-color-primary-contrast);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        border-radius: 12px;
+        height: 48px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.2);
+    }
+    
+    .themed-button-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(var(--ion-color-primary-rgb), 0.3);
+    }
+    
+    .themed-button-login:active {
+        transform: translateY(0);
+    }
+    
+    /* Input field putih di semua tema */
+    .themed-input {
+        background-color: #ffffff !important;
+        border: 1px solid var(--ion-color-medium);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        color: #000000 !important;
+        caret-color: #000000 !important;
+    }
+
+    .themed-input:focus-within {
+        border-color: var(--ion-color-primary);
+        box-shadow: 0 0 0 3px rgba(var(--ion-color-primary-rgb), 0.1);
+    }
+    
+    /* Typography yang lebih baik */
+    .themed-text-title {
+        color: var(--ion-text-color);
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+    
+    .themed-text-subtitle {
+        color: var(--ion-color-medium);
+        font-weight: 400;
+    }
+    
+    /* Toggle tema yang lebih halus */
+    .themed-theme-toggle {
+        background-color: var(--ion-background-color);
+        border: 1px solid rgba(var(--ion-text-color-rgb), 0.08);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .themed-theme-toggle:hover {
+        transform: rotate(15deg);
+    }
+
+    /* Animasi halus untuk logo */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .logo-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Additional styles for form elements */
+    .form-label {
+        color: var(--ion-text-color);
+    }
+
+    .forgot-password-link {
+        color: var(--ion-color-primary);
+    }
+
+    .card-footer {
+        border-top: 1px solid rgba(var(--ion-text-color-rgb), 0.1);
+    }
+
+    /* Solusi untuk autofill Chrome */
+    .themed-input:-webkit-autofill,
+    .themed-input:-webkit-autofill:hover,
+    .themed-input:-webkit-autofill:focus,
+    .themed-input:-webkit-autofill:active {
+        -webkit-text-fill-color: #000000 !important;
+        -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    }
+</style>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+    <div class="min-h-screen flex items-center justify-center p-4 antialiased">
+        <div class="w-full max-w-md relative">
+            <div class="themed-login-card p-1">
+                <!-- Floating gradient background -->
+                <div class="absolute inset-0 overflow-hidden opacity-10">
+                    <div class="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-r from-purple-300 to-blue-300 rounded-full filter blur-3xl"></div>
+                    <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-r from-yellow-300 to-red-300 rounded-full filter blur-3xl"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <!-- Theme toggle button -->
+                    <div class="absolute top-4 right-4 z-20">
+                        <button (click)="toggleTheme()" aria-label="Toggle theme"
+                            class="themed-theme-toggle shadow-sm hover:shadow-md">
+                            <svg *ngIf="!isDarkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                            </svg>
+                            <svg *ngIf="isDarkMode" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Header section -->
+                    <div class="p-8 text-center">
+                        <div class="flex justify-center mb-5">
+                            <img src="assets/icon/dapuremak.png" alt="DapurEmak Logo" class="w-24 h-24 object-contain logo-float">
+                        </div>
+                        <h1 class="text-3xl font-bold themed-text-title tracking-tight">DapurEmak</h1>
+                        <p class="themed-text-subtitle mt-2 text-sm">Solusi Kenyang Massal</p>
+                    </div>
+
+                    <!-- Form section -->
+                    <div class="px-8 pb-8">
+                        <h2 class="text-xl font-semibold text-center themed-text-title mb-6">Masuk ke Akun Anda</h2>
+                        
+                        <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-5">
+                            <!-- Email input -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium form-label mb-1">Email</label>
+                                <input type="email" id="email" formControlName="email"
+                                    class="w-full px-4 py-3 themed-input"
+                                    placeholder="email@contoh.com">
+                            </div>
+
+                            <!-- Password input -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label for="password" class="block text-sm font-medium form-label">Password</label>
+                                </div>
+                                <div class="relative">
+                                    <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+                                        class="w-full px-4 py-3 themed-input"
+                                        placeholder="••••••••">
+                                    <button type="button" (click)="togglePasswordVisibility()" 
+                                        class="absolute right-3 top-3 text-gray-500 dark:text-gray-400">
+                                        <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" class="text-lg"></ion-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" [disabled]="loginForm.invalid"
+                                class="w-full py-3 px-4 themed-button-login mt-6">
+                                Masuk
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="px-8 py-4 text-center card-footer">
+                        <p class="text-xs themed-text-subtitle">
+                            © {{ currentYear }} DapurEmak. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
